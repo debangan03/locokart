@@ -13,7 +13,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchorders = async () => {
       const { data } = await axios.post(
-        `${process.env.VERCEL_URL || "http://localhost:3000"}/api/myorders`,
+        `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/myorders`,
         {
           token: localStorage.getItem("token"),
         }

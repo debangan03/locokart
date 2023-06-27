@@ -21,7 +21,7 @@ const Register = () => {
     e.preventDefault();
     const data ={name,email,phone,password}
  
-    let res = await fetch(`${process.env.VERCEL_URL||'http://localhost:3000'}/api/signup`,{
+    let res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL||'http://localhost:3000'}/api/signup`,{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
@@ -45,7 +45,7 @@ const Register = () => {
     setphone('');
     setpassword('');
     setTimeout(() => {
-      router.push(`${process.env.VERCEL_URL||'http://localhost:3000'}/Login`)
+      router.push(`${process.env.NEXT_PUBLIC_VERCEL_URL||'http://localhost:3000'}/Login`)
     }, 1000);
     
 

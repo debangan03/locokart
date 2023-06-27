@@ -7,6 +7,7 @@ import { useState} from 'react'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Head from 'next/head'
+import axios from 'axios'
 
 const Login = () => {
 const [d, setd] = useState(true)
@@ -34,7 +35,7 @@ useEffect(()=>{
     e.preventDefault();
     const data ={email,password}
 
-    let res = await fetch(`${process.env.VERCEL_URL||'http://localhost:3000'}/api/login`,{
+    let res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/login`,{
       method:'POST',
       headers:{
         'Content-Type':'application/json',

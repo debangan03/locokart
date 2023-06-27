@@ -27,7 +27,7 @@ const Checkout = ({ cart, addtocart, removecart, subtotal, clearcart }) => {
       
       const fetem = async () => {
         let { data } = await axios.post(
-          `${process.env.VERCEL_URL||'http://localhost:3000'}/api/getemail`,
+          `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/getemail`,
           {
             token: token,
           }
@@ -68,7 +68,7 @@ const Checkout = ({ cart, addtocart, removecart, subtotal, clearcart }) => {
       setpin(e.target.value);
       if (e.target.value.length == 6) {
         const pinjson = await fetch(
-          `${process.env.VERCEL_URL||'http://localhost:3000'}/api/getpins`
+          `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/getpins`
         ).then((res) => res.json());
 
         if (Object.keys(pinjson).includes(e.target.value)) {
@@ -108,7 +108,7 @@ const Checkout = ({ cart, addtocart, removecart, subtotal, clearcart }) => {
     // const oid = Math.floor(Math.random() * Date.now()).toString();
 
     const { data } = await axios.post(
-      `${process.env.VERCEL_URL||'http://localhost:3000'}/api/pretransaction`,
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/pretransaction`,
       {
         subtotal,
         cart,
@@ -119,7 +119,7 @@ const Checkout = ({ cart, addtocart, removecart, subtotal, clearcart }) => {
 
     if (data.success) {
       const { data1 } = await axios.post(
-        `${process.env.VERCEL_URL||'http://localhost:3000'}/api/postordr`,
+        `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postordr`,
         {
           email,
           oid: data.order.id,
@@ -129,7 +129,7 @@ const Checkout = ({ cart, addtocart, removecart, subtotal, clearcart }) => {
         }
       );
       // const { data2 } = await axios.post(
-      //   `${process.env.VERCEL_URL||'http://localhost:3000'}/api/posttransaction`,
+      //   `${process.env.NEXT_PUBLIC_VERCEL_URL||'http://localhost:3000'}/api/posttransaction`,
       //   {
       //     oid,
       //   }
@@ -143,7 +143,7 @@ const Checkout = ({ cart, addtocart, removecart, subtotal, clearcart }) => {
         description: "Test Transaction",
         image: "https://i.ibb.co/87S5MLb/logo.png",
         order_id: data.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        callback_url: `${process.env.VERCEL_URL||'http://localhost:3000'}/api/posttransaction`,
+        callback_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posttransaction`,
         prefill: {
           name: name,
           email: email,
@@ -174,7 +174,7 @@ const Checkout = ({ cart, addtocart, removecart, subtotal, clearcart }) => {
         theme: "light",
       });
       setTimeout(() => {
-        router.push(`${process.env.VERCEL_URL||'http://localhost:3000'}`);
+        router.push(`${process.env.NEXT_PUBLIC_VERCEL_URL}`);
       }, 1500);
     }
   };
